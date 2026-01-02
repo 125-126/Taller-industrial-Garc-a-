@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taller Industrial García</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#020617;
+--card:#0f172a;
+--accent:#f59e0b;
+--muted:#9ca3af;
+--radius:16px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:Inter,system-ui;
+background:var(--bg);
+color:#e5e7eb;
+}
+
+/* HEADER */
+header{
+position:sticky;top:0;z-index:100;
+background:#020617;
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.header-inner{
+max-width:1200px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:14px 18px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:800;
+}
+
+.brand img{width:40px}
+
+nav{
+display:flex;
+gap:22px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:600;
+cursor:pointer;
+}
+
+.menu-toggle{
+display:none;
+flex-direction:column;
+gap:5px;
+cursor:pointer;
+}
+
+.menu-toggle span{
+width:26px;height:3px;
+background:white;
+border-radius:3px;
+}
+
+/* HERO */
+.hero{
+position:relative;
+max-width:1200px;
+margin:50px auto;
+padding:80px 40px;
+border-radius:var(--radius);
+background:
+linear-gradient(rgba(2,6,23,.92),rgba(2,6,23,.92));
+box-shadow:0 40px 80px rgba(0,0,0,.6);
+overflow:hidden;
+}
+
+.watermark{
+position:absolute;
+inset:0;
+background:url("img/logo.webp") center no-repeat;
+background-size:420px;
+opacity:.06;
+pointer-events:none;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+}
+
+.hero h1{
+font-size:3rem;
+margin-bottom:14px;
+}
+
+.hero p{
+max-width:620px;
+color:var(--muted);
+line-height:1.7;
+}
+
+/* SLIDER */
+.hero-slider{
+margin-top:40px;
+overflow:hidden;
+}
+
+.slider-track{
+display:flex;
+gap:20px;
+width:max-content;
+animation:scroll 28s linear infinite;
+}
+
+.slider-track img{
+width:360px;
+height:220px;
+object-fit:cover;
+border-radius:14px;
+box-shadow:0 12px 30px rgba(0,0,0,.5);
+}
+
+@keyframes scroll{
+from{transform:translateX(0)}
+to{transform:translateX(-50%)}
+}
+
+/* MODALS */
+.modal{
+position:fixed;
+inset:0;
+background:rgba(2,6,23,.85);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:200;
+padding:20px;
+}
+
+.modal.active{display:flex}
+
+.modal-box{
+background:#020617;
+width:100%;
+max-width:600px;
+border-radius:18px;
+padding:24px;
+box-shadow:0 40px 80px rgba(0,0,0,.7);
+}
+
+.modal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:18px;
+}
+
+.close{cursor:pointer;font-size:22px}
+
+/* SERVICES */
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:14px;
+}
+
+.service{
+background:var(--card);
+padding:16px;
+border-radius:12px;
+text-align:center;
+font-weight:600;
+}
+
+/* FORM */
+input,textarea{
+width:100%;
+padding:10px;
+border-radius:8px;
+border:none;
+background:var(--card);
+color:white;
+margin-bottom:10px;
+}
+
+button{
+background:var(--accent);
+border:none;
+padding:12px;
+border-radius:10px;
+font-weight:700;
+cursor:pointer;
+width:100%;
+}
+
+.horario{
+font-size:.9rem;
+color:var(--muted);
+margin-bottom:12px;
+}
+
+/* STARS */
+.stars span{
+font-size:32px;
+cursor:pointer;
+color:#374151;
+}
+
+.stars span.active{color:var(--accent)}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+right:18px;
+bottom:18px;
+background:#25D366;
+color:white;
+padding:14px 18px;
+border-radius:999px;
+font-weight:700;
+text-decoration:none;
+box-shadow:0 10px 30px rgba(0,0,0,.6);
+display:flex;
+gap:8px;
+align-items:center;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+nav{
+position:absolute;
+top:64px;
+right:0;
+background:#020617;
+flex-direction:column;
+width:100%;
+display:none;
+}
+
+nav.active{display:flex}
+
+.menu-toggle{display:flex}
+
+.hero{
+padding:60px 24px;
+margin:30px 14px;
+}
+
+.hero h1{font-size:2.1rem}
+
+.slider-track img{
+width:280px;
+height:180px;
+}
+
+.watermark{background-size:260px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-inner">
+<div class="brand">
+<img src="img/logo.webp">
+Taller Industrial García
+</div>
+
+<div class="menu-toggle" onclick="toggleMenu()">
+<span></span><span></span><span></span>
+</div>
+
+<nav id="nav">
+<a onclick="closeMenu()">Inicio</a>
+<a onclick="openModal('services')">Servicios</a>
+<a onclick="openModal('contact')">Contacto</a>
+<a onclick="openModal('map')">Ubicación</a>
+<a onclick="openModal('rate')">Calificar</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="watermark"></div>
+<div class="hero-content">
+<h1>Bienvenidos a Taller Industrial García</h1>
+<p>
+Especialistas en torno, prensa hidráulica y soldadura industrial.
+Fabricamos y reparamos piezas con precisión y calidad profesional.
+</p>
+
+<div class="hero-slider">
+<div class="slider-track">
+<img src="img/trabajo1.webp">
+<img src="img/trabajo2.webp">
+<img src="img/trabajo3.webp">
+<img src="img/trabajo1.webp">
+<img src="img/trabajo2.webp">
+</div>
+</div>
+</div>
+</section>
+
+<!-- MODALS -->
+<div class="modal" id="services">
+<div class="modal-box">
+<div class="modal-header">
+<h3>Servicios</h3>
+<span class="close" onclick="closeModal()">✕</span>
+</div>
+<div class="services">
+<div class="service">Soldadura Industrial</div>
+<div class="service">Torno</div>
+<div class="service">Prensa Hidráulica</div>
+<div class="service">Estructuras Metálicas</div>
+<div class="service">Portones</div>
+<div class="service">Mantenimiento</div>
+</div>
+</div>
+</div>
+
+<div class="modal" id="contact">
+<div class="modal-box">
+<div class="modal-header">
+<h3>Contacto</h3>
+<span class="close" onclick="closeModal()">✕</span>
+</div>
+
+<div class="horario">⏱ Lun–Sáb | 8:00 AM – 5:00 PM</div>
+
+<input id="name" placeholder="Nombre">
+<input id="phone" placeholder="Teléfono">
+<textarea id="msg" placeholder="¿Qué necesita?"></textarea>
+<button onclick="sendWhats()">Enviar a WhatsApp</button>
+</div>
+</div>
+
+<div class="modal" id="map">
+<div class="modal-box">
+<div class="modal-header">
+<h3>Ubicación</h3>
+<span class="close" onclick="closeModal()">✕</span>
+</div>
+<iframe src="https://www.google.com/maps?q=Taller+Industrial+Garcia&output=embed"
+width="100%" height="300" style="border:0"></iframe>
+</div>
+</div>
+
+<div class="modal" id="rate">
+<div class="modal-box">
+<div class="modal-header">
+<h3>Calificar servicio</h3>
+<span class="close" onclick="closeModal()">✕</span>
+</div>
+<div class="stars" id="stars">
+<span onclick="rate(1)">★</span>
+<span onclick="rate(2)">★</span>
+<span onclick="rate(3)">★</span>
+<span onclick="rate(4)">★</span>
+<span onclick="rate(5)">★</span>
+</div>
+<button onclick="sendRate()">Enviar calificación</button>
+</div>
+</div>
+
+<a class="whatsapp" href="https://wa.me/50360014234" target="_blank">
+WhatsApp · Respuesta rápida
+</a>
+
+<script>
+let rating=0;
+
+function toggleMenu(){
+document.getElementById('nav').classList.toggle('active');
+}
+
+function closeMenu(){
+document.getElementById('nav').classList.remove('active');
+}
+
+function openModal(id){
+closeMenu();
+document.querySelectorAll('.modal').forEach(m=>m.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function closeModal(){
+document.querySelectorAll('.modal').forEach(m=>m.classList.remove('active'));
+}
+
+function sendWhats(){
+const txt=`Hola, soy ${name.value}. Tel: ${phone.value}. Necesito: ${msg.value}`;
+window.open(`https://wa.me/50360014234?text=${encodeURIComponent(txt)}`);
+}
+
+function rate(n){
+rating=n;
+document.querySelectorAll('#stars span').forEach((s,i)=>{
+s.classList.toggle('active',i<n);
+});
+}
+
+function sendRate(){
+window.open(`https://wa.me/50360014234?text=Calificación del servicio: ${rating} estrellas`);
+}
+</script>
+
+</body>
+</html>
