@@ -497,7 +497,30 @@ letter-spacing:.3px;
     justify-content:flex-start;
   }
 }
+/* FIX MODAL SERVICIOS EN CELULAR */
+@media(max-width:768px){
 
+  .modal{
+    align-items:flex-start;   /* ya no centra vertical */
+    padding:12px;
+  }
+
+  .modal-box{
+    max-height:90vh;          /* nunca más alto que la pantalla */
+    overflow-y:auto;          /* scroll interno */
+    padding-bottom:30px;
+  }
+
+  /* mejora scroll en móviles */
+  .modal-box::-webkit-scrollbar{
+    width:6px;
+  }
+
+  .modal-box::-webkit-scrollbar-thumb{
+    background:rgba(245,158,11,.4);
+    border-radius:6px;
+  }
+}
 </style>
 
 
@@ -701,6 +724,7 @@ window.open(`https://wa.me/50360014234?text=Calificación del servicio: ${rating
 
 </body>
 </html>
+
 
 
 
