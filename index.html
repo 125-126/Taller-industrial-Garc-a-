@@ -47,7 +47,10 @@ gap:10px;
 font-weight:800;
 }
 
-.brand img{width:40px}
+.brand img{
+width:40px;
+filter:drop-shadow(0 0 6px rgba(245,158,11,.6));
+}
 
 nav{
 display:flex;
@@ -59,6 +62,22 @@ color:white;
 text-decoration:none;
 font-weight:600;
 cursor:pointer;
+position:relative;
+}
+
+nav a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-6px;
+width:0;
+height:2px;
+background:linear-gradient(90deg,#f59e0b,#fde68a);
+transition:.3s;
+}
+
+nav a:hover::after{
+width:100%;
 }
 
 .menu-toggle{
@@ -83,17 +102,19 @@ padding:80px 40px;
 border-radius:var(--radius);
 background:
 linear-gradient(rgba(2,6,23,.92),rgba(2,6,23,.92));
-box-shadow:0 40px 80px rgba(0,0,0,.6);
+box-shadow:
+0 40px 80px rgba(0,0,0,.6),
+inset 0 0 0 1px rgba(245,158,11,.25);
 overflow:hidden;
 }
 
 .watermark{
-position:absolute;
-inset:0;
-background:url("img/logo.WEBP") center no-repeat;
-background-size:420px;
-opacity:.06;
-pointer-events:none;
+  position:absolute;
+  inset:0;
+  background:url("img/logo.webp") center no-repeat;
+  background-size:600px;
+  opacity:.045;
+  pointer-events:none;
 }
 
 .hero-content{
@@ -104,6 +125,17 @@ z-index:2;
 .hero h1{
 font-size:3rem;
 margin-bottom:14px;
+position:relative;
+}
+
+.hero h1::after{
+content:"";
+display:block;
+width:90px;
+height:3px;
+margin-top:12px;
+background:linear-gradient(90deg,#f59e0b,#fde68a);
+border-radius:999px;
 }
 
 .hero p{
@@ -159,6 +191,18 @@ max-width:600px;
 border-radius:18px;
 padding:24px;
 box-shadow:0 40px 80px rgba(0,0,0,.7);
+position:relative;
+}
+
+.modal-box::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:3px;
+background:linear-gradient(90deg,#f59e0b,#fde68a);
+border-radius:18px 18px 0 0;
 }
 
 .modal-header{
@@ -168,7 +212,15 @@ align-items:center;
 margin-bottom:18px;
 }
 
-.close{cursor:pointer;font-size:22px}
+.modal-header h3{
+color:#fde68a;
+}
+
+.close{
+cursor:pointer;
+font-size:22px;
+color:#f59e0b;
+}
 
 /* SERVICES */
 .services{
@@ -183,6 +235,20 @@ padding:16px;
 border-radius:12px;
 text-align:center;
 font-weight:600;
+position:relative;
+}
+
+.service::after{
+content:"";
+position:absolute;
+inset:0;
+border-radius:12px;
+border:1px solid rgba(245,158,11,.25);
+pointer-events:none;
+}
+
+.service:hover::after{
+border-color:rgba(245,158,11,.55);
 }
 
 /* FORM */
@@ -196,6 +262,11 @@ color:white;
 margin-bottom:10px;
 }
 
+input:focus,textarea:focus{
+outline:none;
+box-shadow:0 0 0 2px rgba(245,158,11,.4);
+}
+
 button{
 background:var(--accent);
 border:none;
@@ -206,6 +277,7 @@ cursor:pointer;
 width:100%;
 }
 
+/* EXTRA TEXT */
 .horario{
 font-size:.9rem;
 color:var(--muted);
@@ -219,7 +291,10 @@ cursor:pointer;
 color:#374151;
 }
 
-.stars span.active{color:var(--accent)}
+.stars span.active{
+color:var(--accent);
+text-shadow:0 0 8px rgba(245,158,11,.7);
+}
 
 /* WHATSAPP */
 .whatsapp{
@@ -268,7 +343,164 @@ height:180px;
 
 .watermark{background-size:260px}
 }
+
+/* CTA HERO */
+.hero-actions{
+margin-top:26px;
+display:flex;
+gap:16px;
+flex-wrap:wrap;
+}
+
+.hero-actions a{
+padding:14px 22px;
+border-radius:12px;
+font-weight:700;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+gap:8px;
+}
+
+.cta-primary{
+background:var(--accent);
+color:#020617;
+box-shadow:0 12px 30px rgba(245,158,11,.5);
+}
+
+.cta-primary:hover{
+transform:translateY(-2px);
+box-shadow:0 18px 40px rgba(245,158,11,.7);
+}
+
+.cta-secondary{
+border:1px solid rgba(245,158,11,.4);
+color:#fde68a;
+}
+
+/* BADGE CONFIANZA */
+.badge{
+margin-top:18px;
+display:inline-flex;
+gap:8px;
+align-items:center;
+font-size:.85rem;
+color:var(--muted);
+}
+
+.badge span{
+color:var(--accent);
+}
+
+/* SLIDER LABEL */
+.slide{
+position:relative;
+}
+
+.slide::after{
+content:attr(data-label);
+position:absolute;
+left:12px;
+bottom:12px;
+padding:6px 10px;
+font-size:.75rem;
+border-radius:8px;
+background:rgba(2,6,23,.85);
+border:1px solid rgba(245,158,11,.35);
+color:#fde68a;
+}
+
+/* SERVICIOS ORDENADOS COMO IMAGEN */
+.service-group{
+grid-column:1 / -1;
+background:#020617;
+border:1px solid rgba(245,158,11,.35);
+border-radius:14px;
+padding:16px;
+}
+
+.service-title{
+font-weight:800;
+color:#fde68a;
+margin-bottom:12px;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.service-tags{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.service-tag{
+background:var(--card);
+border:1px solid rgba(245,158,11,.25);
+padding:8px 12px;
+border-radius:999px;
+font-size:.85rem;
+font-weight:600;
+white-space:nowrap;
+}
+
+/* MEJORA VISUAL DE SERVICIOS */
+.service-group{
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+
+.service-tags{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+gap:12px;
+}
+
+.service-tag{
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+min-height:44px;
+padding:10px 14px;
+border-radius:12px;
+font-size:.85rem;
+line-height:1.2;
+}
+
+.service-title{
+font-size:1.05rem;
+letter-spacing:.3px;
+}
+
+/* MODAL HORIZONTAL PARA SERVICIOS */
+@media(min-width:900px){
+  #services .modal-box{
+    max-width:1000px;   /* más ancho */
+  }
+
+  #services .services{
+    grid-template-columns:repeat(2, 1fr); /* 2 columnas de bloques */
+    gap:20px;
+  }
+
+  .service-group{
+    height:100%;
+  }
+}
+
+@media(min-width:900px){
+  .service-group{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+  }
+}
+
 </style>
+
+
 </head>
 
 <body>
@@ -276,7 +508,7 @@ height:180px;
 <header>
 <div class="header-inner">
 <div class="brand">
-<img src="img/logo.WEBP">
+<img src="img/logo.webp">
 Taller Industrial García
 </div>
 
@@ -298,18 +530,40 @@ Taller Industrial García
 <div class="watermark"></div>
 <div class="hero-content">
 <h1>Bienvenidos a Taller Industrial García</h1>
+
 <p>
 Especialistas en torno, prensa hidráulica y soldadura industrial.
 Fabricamos y reparamos piezas con precisión y calidad profesional.
 </p>
 
+<div class="badge">
+<span>★</span> Atención profesional • Trabajos garantizados
+</div>
+
+<div class="hero-actions">
+<a href="https://wa.me/50360014234" target="_blank" class="cta-primary">
+📲 Cotizar por WhatsApp
+</a>
+
+<a onclick="openModal('services')" class="cta-secondary">
+⚙️ Ver servicios
+</a>
+</div>
+
 <div class="hero-slider">
 <div class="slider-track">
-<img src="img/trabajo1.webp">
-<img src="img/trabajo2.webp">
-<img src="img/trabajo3.webp">
-<img src="img/trabajo1.webp">
-<img src="img/trabajo2.webp">
+<div class="slide" data-label="Rectificado de disco">
+<img src="img/trabajo1.JPEG">
+</div>
+<div class="slide" data-label="Soldadura">
+<img src="img/trabajo2.JPEG">
+</div>
+<div class="slide" data-label="Reparación de rines">
+<img src="img/trabajo3.JPEG">
+</div>
+<div class="slide" data-label="Rectificado de disco">
+<img src="img/trabajo4.JPEG">
+</div>
 </div>
 </div>
 </div>
@@ -322,13 +576,43 @@ Fabricamos y reparamos piezas con precisión y calidad profesional.
 <h3>Servicios</h3>
 <span class="close" onclick="closeModal()">✕</span>
 </div>
+
 <div class="services">
-<div class="service">Soldadura Industrial</div>
-<div class="service">Torno</div>
-<div class="service">Prensa Hidráulica</div>
-<div class="service">Estructuras Metálicas</div>
-<div class="service">Portones</div>
-<div class="service">Mantenimiento</div>
+
+  <!-- TORNO -->
+  <div class="service-group">
+    <div class="service-title">🔧 Torno</div>
+    <div class="service-tags">
+      <div class="service-tag">Fabricación de piezas mecánicas</div>
+      <div class="service-tag">Reparación de cardanes</div>
+      <div class="service-tag">Reparación de flechas</div>
+      <div class="service-tag">Reparación de esferas</div>
+      <div class="service-tag">Bufas y mordazas de freno</div>
+    </div>
+  </div>
+
+  <!-- PRENSA -->
+  <div class="service-group">
+    <div class="service-title">🏗️ Prensa hidráulica</div>
+    <div class="service-tags">
+      <div class="service-tag">Cambio de bujes</div>
+      <div class="service-tag">Cambio de esferas</div>
+      <div class="service-tag">Cambio de baleros</div>
+      <div class="service-tag">Extracción de piñones</div>
+    </div>
+  </div>
+
+  <!-- SOLDADURA -->
+  <div class="service-group">
+    <div class="service-title">🔥 Soldadura eléctrica (MIG y TIG)</div>
+    <div class="service-tags">
+      <div class="service-tag">Soldadura en aluminio</div>
+      <div class="service-tag">Soldadura en hierro fundido</div>
+      <div class="service-tag">Soldadura en acero inoxidable</div>
+      <div class="service-tag">Reparación de rines</div>
+    </div>
+  </div>
+
 </div>
 </div>
 </div>
@@ -378,7 +662,7 @@ width="100%" height="300" style="border:0"></iframe>
 </div>
 
 <a class="whatsapp" href="https://wa.me/50360014234" target="_blank">
-WhatsApp · Respuesta rápida
+WhatsApp
 </a>
 
 <script>
@@ -420,5 +704,5 @@ window.open(`https://wa.me/50360014234?text=Calificación del servicio: ${rating
 </script>
 
 </body>
-
 </html>
+
