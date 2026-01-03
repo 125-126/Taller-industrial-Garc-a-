@@ -841,7 +841,9 @@ Fabricamos y reparamos piezas con precisión y calidad profesional.
 <script>
 let rating = 0;
 
-/* MENÚ MÓVIL */
+/* =====================
+   MENÚ MÓVIL
+===================== */
 function toggleMenu(){
   const nav = document.getElementById('nav');
   nav.classList.toggle('active');
@@ -853,7 +855,9 @@ function closeMenu(){
   document.body.classList.remove('menu-open');
 }
 
-/* MODALES */
+/* =====================
+   MODALES
+===================== */
 function openModal(id){
   closeMenu();
   document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
@@ -864,13 +868,33 @@ function closeModal(){
   document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
 }
 
-/* WHATSAPP CONTACTO */
+/* =====================
+   WHATSAPP CONTACTO
+===================== */
 function sendWhats(){
-  const txt = `Hola, soy ${name.value}. Tel: ${phone.value}. Necesito: ${msg.value}`;
-  window.open(`https://wa.me/50360014234?text=${encodeURIComponent(txt)}`);
+  const nombre   = document.getElementById('name').value.trim();
+  const telefono = document.getElementById('phone').value.trim();
+  const mensaje  = document.getElementById('msg').value.trim();
+
+  if(!nombre){
+    alert("Por favor ingrese su nombre");
+    return;
+  }
+
+  const texto =
+`Hola, mi nombre es ${nombre}.
+Teléfono: ${telefono}
+Necesito: ${mensaje}`;
+
+  window.open(
+    `https://wa.me/50371523657?text=${encodeURIComponent(texto)}`,
+    '_blank'
+  );
 }
 
-/* CALIFICACIÓN */
+/* =====================
+   CALIFICACIÓN
+===================== */
 function rate(n){
   rating = n;
   document.querySelectorAll('#stars span').forEach((s, i) => {
@@ -879,16 +903,23 @@ function rate(n){
 }
 
 function sendRate(){
+  if(rating === 0){
+    alert("Por favor seleccione una calificación");
+    return;
+  }
+
   window.open(
-    `https://wa.me/50360014234?text=${encodeURIComponent(
+    `https://wa.me/50371523657?text=${encodeURIComponent(
       'Calificación del servicio: ' + rating + ' estrellas'
-    )}`
+    )}`,
+    '_blank'
   );
 }
 </script>
 
 </body>
 </html>
+
 
 
 
