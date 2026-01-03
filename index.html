@@ -521,6 +521,50 @@ letter-spacing:.3px;
     border-radius:6px;
   }
 }
+
+/* BOTÓN INICIAR VIAJE - PRO */
+.btn-route{
+  margin-top:16px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  padding:16px 22px;
+  border-radius:14px;
+  font-size:1rem;
+  font-weight:800;
+  background:linear-gradient(135deg,#f59e0b,#fde68a);
+  color:#020617;
+  text-decoration:none;
+  box-shadow:
+    0 12px 30px rgba(245,158,11,.45),
+    inset 0 0 0 1px rgba(255,255,255,.35);
+  transition:.25s ease;
+}
+
+.btn-route:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 18px 40px rgba(245,158,11,.65),
+    inset 0 0 0 1px rgba(255,255,255,.5);
+}
+
+.btn-route:active{
+  transform:scale(.97);
+}
+
+/* ICONO PULSANTE SUTIL */
+.btn-route span{
+  font-size:1.2rem;
+  animation:pulse 1.6s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+  100%{transform:scale(1)}
+}
+  
 </style>
 
 
@@ -670,13 +714,12 @@ Fabricamos y reparamos piezas con precisión y calidad profesional.
       style="border:0;border-radius:12px;">
     </iframe>
 
-    <a
-      href="https://www.google.com/maps/dir/?api=1&destination=Taller+Industrial+Garcia"
-      target="_blank"
-      class="cta-primary"
-      style="margin-top:14px;display:flex;justify-content:center;">
-      🚗 Iniciar viaje
-    </a>
+<a
+  href="https://www.google.com/maps/dir/?api=1&destination=Taller+Industrial+Garcia"
+  target="_blank"
+  class="btn-route">
+  <span>🚗</span> Iniciar viaje
+</a>
 
   </div>
 </div>
@@ -738,6 +781,7 @@ window.open(`https://wa.me/50360014234?text=Calificación del servicio: ${rating
 
 </body>
 </html>
+
 
 
 
